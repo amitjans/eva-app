@@ -39,7 +39,7 @@ app.on('ready', () => {
     })
 })
 
-function createNewProductWindow() {
+function createWifiWindow() {
     wifiWindow = new BrowserWindow({
         width: 900,
         height: 480,
@@ -61,6 +61,7 @@ function createNewProductWindow() {
 }
 
 ipcMain.on('wifi:new', (e, obj) => {
+    console.log('ssid: ' + obj.name + ', password: ' + obj.pass);
     wifi.connect({ ssid: obj.name, password: obj.pass }, error => {
         if (error) {
             console.log(error);
@@ -86,10 +87,10 @@ const templateMenu = [
         label: 'File',
         submenu: [
             {
-                label: 'New Product',
-                accelerator: 'Ctrl+N',
+                label: 'Configurar Wifi',
+                accelerator: 'Ctrl+W',
                 click() {
-                    createNewProductWindow();
+                    createWifiWindow();
                 }
             },
             {
