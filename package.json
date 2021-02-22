@@ -2,14 +2,15 @@
   "name": "eva-app",
   "productName": "Product Electron App",
   "version": "1.0.0",
-  "description": "",
+  "description": "Eva eyes and control app",
   "main": "src/index.js",
   "scripts": {
     "start": "electron src/index.js",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . eva-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Eva App\"",
-    "package-linux": "electron-packager . eva-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
-    "package-pi": "electron-packager . eva-app --overwrite --asar=true --platform=linux --arch=armv7l --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+    "package-win": "electron-packager . eva-app --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Eva App\"",
+    "package-linux": "electron-packager . eva-app --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
+    "package-pi": "electron-packager . eva-app --overwrite --asar --platform=linux --arch=armv7l --icon=assets/icons/win/icon.ico --prune=true --out=release-builds",
+    "installer-pi": "electron-installer-debian --src release-builds/eva-app-linux-armv7l/ --arch armv7l --config debian.json"
   },
   "keywords": [],
   "author": "",
