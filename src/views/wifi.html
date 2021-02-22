@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add A New Product</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -47,13 +47,17 @@
             console.log(obj);
             wifi.innerHTML = '';
             for (let i = 0; i < obj.length; i++) {
-                wifi.innerHTML += `<div class="alert alert-info" onclick="select('${obj[i].ssid}')">
-                    <div class="row">
-                        <div class="bs-callout bs-callout-info" id="callout-type-b-i-elems">
-                            <h4><span class="fa fa-wifi"></span>${obj[i].ssid}<span class="fa fa-${obj[i].security != 'None' ? 'lock' : 'unlock'}"></span></h4>
-                        </div>
-                    </div>
-                </div>`
+                // wifi.innerHTML += `<div class="alert alert-info" onclick="select('${obj[i].ssid}')">
+                //     <div class="row">
+                //         <div class="bs-callout bs-callout-info" id="callout-type-b-i-elems">
+                //             <h4><span class="fa fa-wifi"></span>${obj[i].ssid}<span class="fa fa-${obj[i].security != 'None' ? 'lock' : 'unlock'}"></span></h4>
+                //         </div>
+                //     </div>
+                // </div>`
+                wifi.innerHTML += `<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="select('${obj[i].ssid}')">
+                    <span class="fa fa-wifi"></span>&nbsp;${obj[i].ssid}&nbsp;<span class="fa fa-${obj[i].security != 'None' ? 'lock' : 'unlock'}"></span>
+                    </button>`
+
             }
         })
 
