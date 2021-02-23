@@ -8,12 +8,13 @@
     <title>Add A New Product</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="keyboard.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-7" style="height: 200px; width: 200px; overflow-y: scroll;">
+        <div class="row col-md-12">
+            <div class="col-md-7" style="height: 200px; overflow-y: scroll;">
                 <div class="content p-4">
                 </div>
             </div>
@@ -29,7 +30,207 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <div class="teclado p-4">
+                <div class="bloque">
+                  <div class="fila-teclas">
+                    <span class="tecla tecla-null" id="bar">
+                      <span>&#124;</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v1">
+                      <span>1</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v2">
+                      <span>2</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v3">
+                      <span>3</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v4">
+                      <span>4</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v5">
+                      <span>5</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v6">
+                      <span>6</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v7">
+                      <span>7</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v8">
+                      <span>8</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v9">
+                      <span>9</span>
+                    </span>
+                    <span class="tecla tecla-shift-numero" id="v0">
+                      <span>0</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec" id="question">
+                      <span>&#39;</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec" id="questiontwo">
+                      <span>&#191;</span>
+                    </span>
+                    <span class="tecla tecla-backspace">
+                      <span>&leftarrow;</span>
+                    </span>
+                  </div>
+                  <div class="fila-teclas">
+                    <span class="tecla tecla-tab">
+                      <span>Tab</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>q</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>w</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>e</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>r</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>t</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>y</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>u</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>i</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>o</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>p</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec-tiny" id="accent">
+                      <span>&#180;</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec-tiny" id="plus">
+                      <span>&#43;</span>
+                    </span>
+                  </div>
+                  <div class="fila-teclas">
+                    <span class="tecla tecla-bloq-mayus">
+                      <span>Bloq. Mayús</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>a</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>s</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>d</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>f</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>g</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>h</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>j</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>k</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>l</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>ñ</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec-tiny" id="leftbra">
+                      <span>&#123;</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec-tiny" id="rightbra">
+                      <span>&#125;</span>
+                    </span>
+                  </div>
+                  <div class="fila-teclas">
+                    <span class="tecla tecla-shift">
+                      <span>Shift</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec" id="greater">
+                      <span>&lt;</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>z</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>x</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>c</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>v</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>b</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>n</span>
+                    </span>
+                    <span class="tecla tecla-letra">
+                      <span>m</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec" id="dotcoma">
+                      <span>&#44;</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec" id="twodots">
+                      <span>&#46;</span>
+                    </span>
+                    <span class="tecla tecla-caract-espec" id="minus">
+                      <span>&#8211;</span>
+                    </span>
+                    <span class="tecla tecla-shift">
+                      <span>Shift</span>
+                    </span>
+                  </div>
+                  <div class="fila-teclas">
+                    <span class="tecla tecla-ctrl">
+                      <span>Ctrl</span>
+                    </span>
+                    <span class="tecla tecla-fn">
+                      <span>Fn<br>&#160;&#175;</span>
+                    </span>
+                    <span class="tecla tecla-windows">
+                      <span>Windows</span>
+                    </span>
+                    <span class="tecla tecla-alt">
+                      <span>Alt</span>
+                    </span>
+                    <span class="tecla tecla-space-bar">
+                      <span>&nbsp;</span>
+                    </span>
+                    <span class="tecla tecla-alt-gr">
+                      <span>Alt Gr</span>
+                    </span>
+                    <span class="tecla tecla-btn-left">
+                      <span>&nbsp;</span>
+                    </span>
+                    <span class="tecla tecla-ctrl-two">
+                      <span>Ctrl</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+        </div>
     </div>
+    <script src="keyboard.js"></script>
     <script>
         const { ipcRenderer } = require('electron');
         const wifi = document.querySelector('.content.p-4');

@@ -21,7 +21,8 @@ let mainWindow, wifiWindow
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            allowRunningInsecureContent: true
         }
     });
     mainWindow.loadURL(url.format({
@@ -42,10 +43,11 @@ app.on('ready', () => {
 function createWifiWindow() {
     wifiWindow = new BrowserWindow({
         width: 900,
-        height: 480,
+        height: 500,
         title: 'Configurar Wifi',
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            allowRunningInsecureContent: true
         }
     });
     //productWindow.setMenu(null);
