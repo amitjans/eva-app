@@ -42,8 +42,8 @@ app.on('ready', () => {
 
 function createWifiWindow() {
     wifiWindow = new BrowserWindow({
-        width: 900,
-        height: 500,
+        width: 1250,
+        height: 700,
         title: 'Configurar Wifi',
         webPreferences: {
             nodeIntegration: true,
@@ -124,12 +124,13 @@ if (process.env.NODE_DEV !== 'production') {
         submenu: [
             {
                 label: 'Show/Hide Dev Tools',
-                accelerator: 'Ctrl+D',
+                accelerator: 'F12',
                 click(item, focusedWindows) {
                     focusedWindows.toggleDevTools();
                 }
             }, {
-                role: 'reload'
+                role: 'reload',
+                accelerator: 'F5'
             }
         ]
     })
