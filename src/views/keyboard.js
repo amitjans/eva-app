@@ -1,5 +1,5 @@
 $(function(){
-	var write = document.querySelector('#keyboard');
+	var write = document.querySelector('#pass');
 	var shift = false, capslock = false;
 	
 	$('#keyboard li').click(function(){
