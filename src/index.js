@@ -62,6 +62,10 @@ function createWifiWindow() {
     })
 }
 
+ipcMain.on('wifi:window', (e, obj) => {
+    createWifiWindow();
+})
+
 ipcMain.on('wifi:new', (e, obj) => {
     console.log('ssid: ' + obj.name + ', password: ' + obj.pass);
     wifi.connect({ ssid: obj.name, password: obj.pass }, error => {
