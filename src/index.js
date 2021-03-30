@@ -2,6 +2,7 @@ const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const url = require('url');
 const path = require('path');
 const wifi = require('node-wifi');
+const ip = require('ip');
 
 wifi.init({
     iface: null // network interface, choose a random wifi interface if set to null
@@ -25,6 +26,7 @@ app.on('ready', () => {
             allowRunningInsecureContent: true
         }
     });
+    console.log(ip.address());
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, "views/index.html"),
         protocol: 'file',
@@ -42,8 +44,8 @@ app.on('ready', () => {
 
 function createWifiWindow() {
     wifiWindow = new BrowserWindow({
-        width: 1250,
-        height: 700,
+        width: 1920,
+        height: 1080,
         title: 'Configurar Wifi',
         webPreferences: {
             nodeIntegration: true,

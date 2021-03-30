@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ip": "^1.1.5",
     "node-wifi": "^2.0.14"
   },
   "devDependencies": {

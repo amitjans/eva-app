@@ -1,34 +1,11 @@
-/* * {
-margin: 0;
-padding: 0;
-} */
-/* body {
-font: 71%/1.5 Verdana, Sans-Serif;
-background: #eee;
-} */
-/* #container {
-margin: 100px auto;
-width: 688px;
-} */
-#write {
-	margin: 0 0 5px;
-	padding: 5px;
-	width: 671px;
-	height: 200px;
-	font: 1em/1.5 Verdana, Sans-Serif;
-	background: #fff;
-	border: 5px solid #ced4da;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
 #keyboard {
 	list-style: none;
 }
 #keyboard li {
 	float: left;
 	margin: 0 5px 5px 0;
-	width: 70px;
-	height: 70px;
+	width: 105px;
+	height: 105px;
 	line-height: 40px;
 	text-align: center;
 	background: #fff;
@@ -40,19 +17,19 @@ width: 688px;
 	clear: left;
 }
 #keyboard .tab, #keyboard .delete {
-	width: 70px;
+	width: 105px;
 }
 #keyboard .capslock {
-	width: 109px;
+	width: 163px;
 }
 #keyboard .return {
-	width: 106px;
+	width: 159px;
 }
 #keyboard .left-shift {
-	width: 138px;
+	width: 207px;
 }
 #keyboard .right-shift {
-	width: 152px;
+	width: 228px;
 }
 .lastitem {
 	margin-right: 0;
@@ -62,7 +39,7 @@ width: 688px;
 }
 #keyboard .space {
 	clear: left;
-	width: 1045px;
+	width: 1540px;
 }
 .on {
 	display: none;
