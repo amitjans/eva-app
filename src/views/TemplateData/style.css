@@ -14,3 +14,10 @@ body { padding: 0; margin: 0 }
 #unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
 #unity-fullscreen-button { float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
 #unity-wifi-button { float: right; width: 38px; height: 38px; padding-left: 20px; background: url('wifi-button.png') no-repeat center }
+.f { float: right; margin: 5px; }
+.btn { display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143;
+    text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation;
+    cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none;
+    border: 1px solid transparent; border-radius: 4px;
+}
+.btn-primary { color: #fff; background-color: #337ab7; border-color: #2e6da4; }

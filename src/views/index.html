@@ -7,6 +7,7 @@
   <title>Eva</title>
   <link rel="shortcut icon" href="TemplateData/favicon.ico">
   <link rel="stylesheet" href="TemplateData/style.css">
+  <link rel="stylesheet" href="TemplateData/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -19,11 +20,14 @@
       </div>
     </div>
     <div id="unity-footer">
-      <div id="unity-webgl-logo"></div>
-      <div id="unity-fullscreen-button"></div>
-      <div id="unity-wifi-button"></div>
-      <div id="unity-build-title">Eyes2</div>
+      <div id="ip" style="font-size: 55px;" class="btn btn-primary"></div>
+      <div id="fullscreen" class="btn btn-primary f"><span class="fa fa-expand fa-5x"></span></div>
+      <div id="wifi" class="btn btn-primary f"><span class="fa fa-wifi fa-5x"></span></div>
+      <div id="int" class="btn btn-primary f"><span class="fa fa-comments-o fa-5x"></span></div>
+      <div id="reboot" class="btn btn-primary f"><span center class="fa fa-refresh fa-5x"></span></div>
+      <div id="power" class="btn btn-primary f"><span class="fa fa-power-off fa-5x"></span></div>
     </div>
+  </div>
   </div>
   <script>
     var buildUrl = "Build";
@@ -42,14 +46,14 @@
     var canvas = document.querySelector("#unity-canvas");
     var loadingBar = document.querySelector("#unity-loading-bar");
     var progressBarFull = document.querySelector("#unity-progress-bar-full");
-    var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+    var fullscreenButton = document.querySelector("#fullscreen");
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
       container.className = "unity-mobile";
       config.devicePixelRatio = 1;
     } else {
-      canvas.style.width = "640px";
-      canvas.style.height = "360px";
+      canvas.style.width = "1280px";
+      canvas.style.height = "720px";
     }
     loadingBar.style.display = "block";
 
@@ -65,7 +69,7 @@
         };
         container.onclick = () => {
           unityInstance.SetFullscreen(0);
-        }
+        };
       }).catch((message) => {
         alert(message);
       });
@@ -74,10 +78,31 @@
 
     // Edited
     const { ipcRenderer } = require('electron');
-    var wifi = document.querySelector("#unity-wifi-button");
+    var wifi = document.querySelector("#wifi");
+    var int = document.querySelector("#int");
+    var reboot = document.querySelector("#reboot");
+    var power = document.querySelector("#power");
+    var ip = document.querySelector('#ip');
     wifi.addEventListener('click', () => {
       ipcRenderer.send('wifi:window');
-    })
+    });
+    int.addEventListener('click', () => {
+      ipcRenderer.send('int:window');
+    });
+    reboot.addEventListener('click', () => {
+      ipcRenderer.send('restart');
+    });
+    power.addEventListener('click', () => {
+      ipcRenderer.send('shutdown');
+    });
+    ipcRenderer.on('wifi:ip', (e, obj) => {
+      console.log(obj);
+      ip.innerHTML = obj;
+    });
+    ipcRenderer.on('fullscreen', () => {
+      fullscreenButton.click();
+    });
+    ipcRenderer.send('getip');
   </script>
 </body>
 

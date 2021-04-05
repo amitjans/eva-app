@@ -3,6 +3,7 @@ const url = require('url');
 const path = require('path');
 const wifi = require('node-wifi');
 const ip = require('ip');
+const shutdown = require('electron-shutdown-command');
 
 wifi.init({
     iface: null // network interface, choose a random wifi interface if set to null
@@ -17,7 +18,7 @@ if (process.env.NODE_DEV !== 'production') {
 
 //Development
 
-let mainWindow, wifiWindow
+let mainWindow, wifiWindow, intWindow;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
@@ -26,13 +27,12 @@ app.on('ready', () => {
             allowRunningInsecureContent: true
         }
     });
-    console.log(ip.address());
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, "views/index.html"),
         protocol: 'file',
         slashes: true
     }))
-    //mainWindow.setFullScreen(true);
+    mainWindow.setFullScreen(true);
 
     const mainMenu = Menu.buildFromTemplate(templateMenu);
     Menu.setApplicationMenu(mainMenu);
@@ -42,6 +42,31 @@ app.on('ready', () => {
     })
 })
 
+ipcMain.on('shutdown', (e, obj) => {
+    shutdown.shutdown({
+        force: true,
+        timerseconds: 2,
+        sudo: true,
+        debug: true,
+        quitapp: true
+      })
+})
+
+ipcMain.on('restart', (e, obj) => {
+    shutdown.reboot({
+        force: true,
+        timerseconds: 2,
+        sudo: true,
+        debug: true,
+        quitapp: true
+      })
+})
+
+ipcMain.on('getip', (e, obj) => {
+    mainWindow.webContents.send('wifi:ip' ,ip.address());
+})
+
+// Wifi start
 function createWifiWindow() {
     wifiWindow = new BrowserWindow({
         width: 1920,
@@ -75,6 +100,7 @@ ipcMain.on('wifi:new', (e, obj) => {
             console.log(error);
         }
         console.log('Connected');
+        mainWindow.webContents.send('wifi:ip' ,ip.address());
     });
     wifiWindow.close();
 })
@@ -84,11 +110,42 @@ ipcMain.on('wifi:scan', (e, obj) => {
         if (error) {
             return error;
         } else {
-            console.log(networks);
             wifiWindow.webContents.send('wifi:list', networks);
         }
     });
 })
+// Wifi end
+
+// Interaction start
+function createIntWindow() {
+    intWindow = new BrowserWindow({
+        width: 1280,
+        height: 480,
+        title: 'Interacciones',
+        webPreferences: {
+            nodeIntegration: true,
+            allowRunningInsecureContent: true
+        }
+    });
+    intWindow.loadURL(url.format({
+        pathname: path.join(__dirname, "views/int.html"),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    intWindow.on('closed', () => {
+        intWindow = null;
+    })
+}
+
+ipcMain.on('int:window', (e, obj) => {
+    createIntWindow();
+})
+ipcMain.on('int:start', (e, obj) => {
+    intWindow.close();
+    mainWindow.webContents.send('fullscreen');
+})
+// Interaction end
 
 const templateMenu = [
     {

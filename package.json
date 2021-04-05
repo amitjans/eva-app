@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "electron-shutdown-command": "^2.0.1",
     "ip": "^1.1.5",
     "node-wifi": "^2.0.14"
   },

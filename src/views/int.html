@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add A New Product</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="TemplateData/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Interacciones</h1>
+    <br>
+    <div id="list" class="row col-md-12">
+
+    </div>
+    <br>
+  </div>
+  <script src="jquery-1.9.1.min.js"></script>
+  <script src="keyboard.js"></script>
+  <script>
+    const { ipcRenderer } = require('electron');
+    const list = document.querySelector("#list");
+    var int = [];
+    window.onload = function () {
+      var req = new XMLHttpRequest();
+      req.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          let obj = JSON.parse(req.responseText);
+          console.log(obj);
+          let result = '';
+          for (let i = 0; i < obj.length; i++) {
+            result += `<div id="int" class="col-md-6"><span class="btn btn-lg btn-warning btn-block" id="${obj[i]._id}">${obj[i].nombre}</span></div>`;
+            if (i + 1 < obj.length) {
+              i++;
+              result += `<div id="int" class="col-md-6"><span class="btn btn-lg btn-warning btn-block" id="${obj[i]._id}">${obj[i].nombre}</span></div>`;
+            }
+            result += `<br/><br/><br/>`;
+          }
+          list.innerHTML = result;
+          document.querySelectorAll("#int").forEach(item => {
+            item.addEventListener('click', e => {
+              execute(e.target.id);
+            });
+          });
+        }
+      };
+      req.open("GET", "http://127.0.0.1:3000/api/common?db=interaccion", true);
+      req.send();
+    }
+
+    function execute(id) {
+      console.log(id);
+      var e = new XMLHttpRequest();
+      e.open("GET", "http://127.0.0.1:3000/interaccion/" + id, true);
+      e.send();
+      ipcRenderer.send("int:start");
+    }
+  </script>
+
+</body>
+
+</html>
