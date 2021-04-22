@@ -5,24 +5,42 @@
   "description": "Eva eyes and control app",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron src/index.js",
+    "start": "NODE_DEV=dev electron src/index.js",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
     "package-win": "electron-packager . eva-app --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Eva App\"",
     "package-linux": "electron-packager . eva-app --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
     "package-pi": "electron-packager . eva-app --overwrite --asar --platform=linux --arch=armv7l --icon=assets/icons/win/icon.ico --prune=true --out=release-builds",
-    "installer-pi": "electron-installer-debian --src release-builds/eva-app-linux-armv7l/ --arch armv7l --config debian.json"
+    "installer-pi": "electron-installer-debian --src release-builds/eva-app-linux-armv7l/ --arch armv7l --config debian.json",
+    "pack": "electron-builder --dir --armv7l",
+    "dist": "electron-builder",
+    "publish": "GH_TOKEN=api electron-builder --linux -p always"
   },
   "keywords": [],
-  "author": "",
+  "author": "Adrian <adrian.mitjans@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "electron-shutdown-command": "^2.0.1",
     "ip": "^1.1.5",
     "node-wifi": "^2.0.14"
   },
   "devDependencies": {
-    "electron": "^11.2.1",
+    "electron": "^11.4.3",
+    "electron-builder": "^22.10.5",
     "electron-packager": "^15.2.0",
     "electron-reload": "^1.5.0"
+  },
+  "build": {
+    "appId": "com.github.amitjans.eva-app",
+    "linux": {
+      "category": "Desktop",
+      "target": {
+        "target": "AppImage",
+        "arch": "armv7l"
+      },
+      "publish": {
+        "provider": "github",
+        "owner": "amitjans",
+        "repo": "eva-app"
+      }
+    }
   }
 }

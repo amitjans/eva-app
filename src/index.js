@@ -4,13 +4,14 @@ const path = require('path');
 const wifi = require('node-wifi');
 const ip = require('ip');
 const shutdown = require('electron-shutdown-command');
+var exec = require('child_process').exec;
 
 wifi.init({
     iface: null // network interface, choose a random wifi interface if set to null
 });
 
 // Dev enviroment
-if (process.env.NODE_DEV !== 'production') {
+if (process.env.NODE_DEV === 'dev') {
     require('electron-reload')(__dirname, {
         electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
     })
@@ -43,23 +44,11 @@ app.on('ready', () => {
 })
 
 ipcMain.on('shutdown', (e, obj) => {
-    shutdown.shutdown({
-        force: true,
-        timerseconds: 2,
-        sudo: true,
-        debug: true,
-        quitapp: true
-      })
+    exec('shutdown now', function(error, stdout, stderr){ callback(stdout); });
 })
 
 ipcMain.on('restart', (e, obj) => {
-    shutdown.reboot({
-        force: true,
-        timerseconds: 2,
-        sudo: true,
-        debug: true,
-        quitapp: true
-      })
+    exec('shutdown -r now', function(error, stdout, stderr){ callback(stdout); });
 })
 
 ipcMain.on('getip', (e, obj) => {
