@@ -1,6 +1,6 @@
 {
   "name": "eva-app",
-  "productName": "Product Electron App",
+  "productName": "Eva",
   "version": "1.0.0",
   "description": "Eva eyes and control app",
   "main": "src/index.js",

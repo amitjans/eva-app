@@ -3,7 +3,6 @@ const url = require('url');
 const path = require('path');
 const wifi = require('node-wifi');
 const ip = require('ip');
-const shutdown = require('electron-shutdown-command');
 var exec = require('child_process').exec;
 
 wifi.init({

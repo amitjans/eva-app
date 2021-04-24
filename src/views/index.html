@@ -67,9 +67,6 @@
         fullscreenButton.onclick = () => {
           unityInstance.SetFullscreen(1);
         };
-        container.onclick = () => {
-          unityInstance.SetFullscreen(0);
-        };
       }).catch((message) => {
         alert(message);
       });
@@ -98,9 +95,6 @@
     ipcRenderer.on('wifi:ip', (e, obj) => {
       console.log(obj);
       ip.innerHTML = obj;
-    });
-    ipcRenderer.on('fullscreen', () => {
-      fullscreenButton.click();
     });
     ipcRenderer.send('getip');
   </script>
