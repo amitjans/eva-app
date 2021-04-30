@@ -147,12 +147,6 @@ const templateMenu = [
                 }
             },
             {
-                label: 'Remove All Products',
-                click() {
-                    mainWindow.webContents.send('products:remove-all')
-                }
-            },
-            {
                 label: 'Exit',
                 accelerator: process.platform == 'darwin' ? 'command+Q' : 'Ctrl+Q',
                 click() {
