@@ -93,48 +93,11 @@
     </div>
   </div>
   <script src="js/jquery-1.9.1.min.js"></script>
-  <script src="js/keyboard.js"></script>
+  <script src="js/keyboard.min.js"></script>
   <script>
     const { ipcRenderer } = require('electron');
-    const wifi = document.querySelector('.content.p-4');
-    window.onload = function () {
-      ipcRenderer.send('wifi:scan', { method: 'get' });
-    }
-
-    document.querySelectorAll('.alert.alert-info').forEach(w => {
-      w.addEventListener('click', e => {
-        document.querySelector('#name').value(e.target.children.children.children.value);
-      })
-    })
-
-    ipcRenderer.on('wifi:list', (e, obj) => {
-      console.log(obj);
-      wifi.innerHTML = '';
-      for (let i = 0; i < obj.length; i++) {
-        wifi.innerHTML += `<button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="select('${obj[i].ssid}')">
-                    <span class="fa fa-wifi"></span>&nbsp;${obj[i].ssid}&nbsp;<span class="fa fa-${obj[i].security != '' ? 'lock' : 'unlock'}"></span>
-                    </button>`
-
-      }
-    })
-
-    const form = document.querySelector('form');
-    form.addEventListener('submit', e => {
-      const name = document.querySelector('#name').value;
-      const pass = document.querySelector('#pass').value;
-      console.log(name, pass);
-      const newWifi = {
-        name: name,
-        pass: pass
-      };
-      ipcRenderer.send('wifi:new', newWifi)
-      e.preventDefault();
-    })
-
-    function select(params) {
-      document.querySelector('#name').value = params;
-    }
   </script>
+  <script src="js/wifi.min.js"></script>
 
 </body>
 

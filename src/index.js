@@ -65,7 +65,7 @@ function createWifiWindow() {
             allowRunningInsecureContent: true
         }
     });
-    //productWindow.setMenu(null);
+    wifiWindow.setMenu(null);
     wifiWindow.loadURL(url.format({
         pathname: path.join(__dirname, "views/wifi.html"),
         protocol: 'file',
@@ -115,6 +115,7 @@ function createIntWindow() {
             allowRunningInsecureContent: true
         }
     });
+    intWindow.setMenu(null);
     intWindow.loadURL(url.format({
         pathname: path.join(__dirname, "views/int.html"),
         protocol: 'file',
