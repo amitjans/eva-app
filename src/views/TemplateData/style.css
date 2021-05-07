@@ -15,6 +15,8 @@ body { padding: 0; margin: 0 }
 #unity-fullscreen-button { float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
 #unity-wifi-button { float: right; width: 38px; height: 38px; padding-left: 20px; background: url('wifi-button.png') no-repeat center }
 .f { float: right; margin: 5px; }
+.int { font-size: 50px !important; word-wrap: break-word !important; }
+.wifi { font-size: 40px !important; word-wrap: break-word !important; }
 .btn { display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143;
     text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation;
     cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none;

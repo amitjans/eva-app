@@ -17,8 +17,7 @@ if (process.env.NODE_DEV === 'dev') {
 }
 
 //Development
-
-let mainWindow, wifiWindow, intWindow;
+let mainWindow;
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
@@ -55,34 +54,7 @@ ipcMain.on('getip', (e, obj) => {
 })
 
 // Wifi start
-function createWifiWindow() {
-    wifiWindow = new BrowserWindow({
-        width: 1920,
-        height: 1080,
-        title: 'Configurar Wifi',
-        webPreferences: {
-            nodeIntegration: true,
-            allowRunningInsecureContent: true
-        }
-    });
-    wifiWindow.setMenu(null);
-    wifiWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "views/wifi.html"),
-        protocol: 'file',
-        slashes: true
-    }))
-
-    wifiWindow.on('closed', () => {
-        wifiWindow = null;
-    })
-}
-
-ipcMain.on('wifi:window', (e, obj) => {
-    createWifiWindow();
-})
-
 ipcMain.on('wifi:new', (e, obj) => {
-    console.log('ssid: ' + obj.name + ', password: ' + obj.pass);
     wifi.connect({ ssid: obj.name, password: obj.pass }, error => {
         if (error) {
             console.log(error);
@@ -90,7 +62,6 @@ ipcMain.on('wifi:new', (e, obj) => {
         console.log('Connected');
         mainWindow.webContents.send('wifi:ip' ,ip.address());
     });
-    wifiWindow.close();
 })
 
 ipcMain.on('wifi:scan', (e, obj) => {
@@ -98,40 +69,14 @@ ipcMain.on('wifi:scan', (e, obj) => {
         if (error) {
             return error;
         } else {
-            wifiWindow.webContents.send('wifi:list', networks);
+            mainWindow.webContents.send('wifi:list', networks);
         }
     });
 })
 // Wifi end
 
 // Interaction start
-function createIntWindow() {
-    intWindow = new BrowserWindow({
-        width: 1280,
-        height: 480,
-        title: 'Interacciones',
-        webPreferences: {
-            nodeIntegration: true,
-            allowRunningInsecureContent: true
-        }
-    });
-    intWindow.setMenu(null);
-    intWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "views/int.html"),
-        protocol: 'file',
-        slashes: true
-    }))
-
-    intWindow.on('closed', () => {
-        intWindow = null;
-    })
-}
-
-ipcMain.on('int:window', (e, obj) => {
-    createIntWindow();
-})
 ipcMain.on('int:start', (e, obj) => {
-    intWindow.close();
     mainWindow.webContents.send('fullscreen');
 })
 // Interaction end
@@ -140,13 +85,6 @@ const templateMenu = [
     {
         label: 'File',
         submenu: [
-            {
-                label: 'Configurar Wifi',
-                accelerator: 'Ctrl+W',
-                click() {
-                    createWifiWindow();
-                }
-            },
             {
                 label: 'Exit',
                 accelerator: process.platform == 'darwin' ? 'command+Q' : 'Ctrl+Q',
@@ -167,14 +105,12 @@ if (process.platform === 'darwin') {
 if (process.env.NODE_DEV !== 'production') {
     templateMenu.push({
         label: 'DevTools',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Show/Hide Dev Tools',
                 accelerator: 'F12',
                 click(item, focusedWindows) {
                     focusedWindows.toggleDevTools();
-                }
-            }, {
+                }}, {
                 role: 'reload',
                 accelerator: 'F5'
             }
