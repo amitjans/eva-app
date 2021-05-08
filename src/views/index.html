@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="TemplateData/style.css">
   <link rel="stylesheet" href="TemplateData/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/keyboard.css">
+  <style>
+    .fa-10x {
+      font-size: 10em;
+    }
+  </style>
 </head>
 
 <body>
@@ -29,17 +34,24 @@
       </div>
     </div>
   </div>
-  <div id="viewmenu" style="display: none; justify-content: center; align-items: center;">
-    <div id="wifi" class="btn btn-primary f" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-5x"></span></div>
-    <div id="intwindow" class="btn btn-primary f" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-5x"></span></div>
-    <div id="reboot" class="btn btn-primary f"><span center class="fa fa-refresh fa-5x"></span></div>
-    <div id="power" class="btn btn-primary f"><span class="fa fa-power-off fa-5x"></span></div>
-    <div id="back" class="btn btn-primary f" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-5x"></span></div>
+  <div id="viewmenu" style="display: none;">
+    <div style="display: flex; align-items: center; justify-content: center; margin-top: 20%;">
+      <div id="back" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-10x"></span></div>
+      <div id="power" class="btn btn-primary menu"><span class="fa fa-power-off fa-10x"></span></div>
+      <div id="reboot" class="btn btn-primary menu"><span center class="fa fa-refresh fa-10x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-10x"></span></div>
+      <div id="wifi" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-10x"></span></div>
+    </div>
   </div>
   <div id="viewint" style="display: none;">
     <h1>Interacciones</h1>
     <br>
     <div id="list" class="row col-md-12">
+    </div>
+    <div class="row col-md-12">
+      <div class="col-md-6">
+        <span class="btn btn-lg btn-primary btn-block int" onclick="changeview('viewint', 'viewmenu')"><i class="fa fa-mail-reply"></i></span>
+      </div>
     </div>
     <br>
   </div>
@@ -53,13 +65,13 @@
         <div class="col-md-5">
           <form class="p-4">
             <div class="form-group">
-              <input type="text" class="form-control" id="name" placeholder="SSID" autofocus>
+              <input type="text" class="form-control-lg" id="name" placeholder="SSID" autofocus>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="pass" placeholder="Contraseña">
+              <input type="text" class="form-control-lg" id="pass" placeholder="Contraseña">
             </div>
-            <button class="btn btn-primary btn-block"> Conectarse</button>
-            <div class="btn btn-primary btn-block" onclick="changeview('viewwifi', 'viewmenu')"> Atr&aacute;s</div>
+            <button class="btn btn-primary btn-block"><i class="fa fa-plug fa-3x"></i></button>
+            <div class="btn btn-primary btn-block" onclick="changeview('viewwifi', 'viewmenu')"><i class="fa fa-mail-reply fa-3x"></i></div>
           </form>
         </div>
       </div>
