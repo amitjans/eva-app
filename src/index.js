@@ -41,12 +41,20 @@ app.on('ready', () => {
     })
 })
 
-ipcMain.on('shutdown', (e, obj) => {
+function shutdown(callback){
     exec('shutdown now', function(error, stdout, stderr){ callback(stdout); });
+}
+
+function reboot(callback){
+    exec('shutdown -r now', function(error, stdout, stderr){ callback(stdout); });
+}
+
+ipcMain.on('shutdown', (e, obj) => {
+    shutdown(function(output){ console.log(output); });
 })
 
 ipcMain.on('restart', (e, obj) => {
-    exec('shutdown -r now', function(error, stdout, stderr){ callback(stdout); });
+    reboot(function(output){ console.log(output); });
 })
 
 ipcMain.on('getip', (e, obj) => {
@@ -70,6 +78,36 @@ ipcMain.on('wifi:scan', (e, obj) => {
             return error;
         } else {
             mainWindow.webContents.send('wifi:list', networks);
+        }
+    });
+})
+
+ipcMain.on('wifi:disconnect', (e, obj) => {
+    wifi.disconnect(error => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Disconnected');
+        }
+    });
+})
+
+ipcMain.on('wifi:current', (e, obj) => {
+    wifi.getCurrentConnections((error, currentConnections) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(currentConnections);
+        }
+    });
+})
+
+ipcMain.on('wifi:delete', (e, obj) => {
+    wifi.deleteConnection({ ssid: obj.name }, error => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Deleted');
         }
     });
 })
