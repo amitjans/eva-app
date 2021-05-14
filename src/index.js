@@ -1,4 +1,5 @@
 const { app, BrowserWindow, Menu, ipcMain } = require('electron');
+var fs = require('fs');
 const url = require('url');
 const path = require('path');
 const wifi = require('node-wifi');
@@ -41,24 +42,38 @@ app.on('ready', () => {
     })
 })
 
-function shutdown(callback){
-    exec('shutdown now', function(error, stdout, stderr){ callback(stdout); });
+function shutdown(callback) {
+    exec('sudo shutdown now', function (error, stdout, stderr) { callback(error); });
+    // exec('systemctl poweroff', function (error, stdout, stderr) { callback(error); });
 }
 
-function reboot(callback){
-    exec('shutdown -r now', function(error, stdout, stderr){ callback(stdout); });
+function reboot(callback) {
+    exec('sudo shutdown -r now', function (error, stdout, stderr) { callback(error); });
+    // exec('systemctl reboot', function (error, stdout, stderr) { callback(error); });
 }
 
 ipcMain.on('shutdown', (e, obj) => {
-    shutdown(function(output){ console.log(output); });
+    shutdown(function (output) {
+        fs.appendFile(path.join('home', 'pi', 'Documents', (Date.now().toString(36) + '.txt')), `exec error: ${output}`, function (err) {
+            if (err) throw err;
+            console.log('Updated!');
+        });
+        console.log(output);
+    });
 })
 
 ipcMain.on('restart', (e, obj) => {
-    reboot(function(output){ console.log(output); });
+    reboot(function (output) {
+        fs.appendFile(path.join('home', 'pi', 'Documents', (Date.now().toString(36) + '.txt')), `exec error: ${output}`, function (err) {
+            if (err) throw err;
+            console.log('Updated!');
+        });
+        console.log(output);
+    });
 })
 
 ipcMain.on('getip', (e, obj) => {
-    mainWindow.webContents.send('wifi:ip' ,ip.address());
+    mainWindow.webContents.send('wifi:ip', ip.address());
 })
 
 // Wifi start
@@ -68,7 +83,7 @@ ipcMain.on('wifi:new', (e, obj) => {
             console.log(error);
         }
         console.log('Connected');
-        mainWindow.webContents.send('wifi:ip' ,ip.address());
+        mainWindow.webContents.send('wifi:ip', ip.address());
     });
 })
 
@@ -144,14 +159,15 @@ if (process.env.NODE_DEV !== 'production') {
     templateMenu.push({
         label: 'DevTools',
         submenu: [{
-                label: 'Show/Hide Dev Tools',
-                accelerator: 'F12',
-                click(item, focusedWindows) {
-                    focusedWindows.toggleDevTools();
-                }}, {
-                role: 'reload',
-                accelerator: 'F5'
+            label: 'Show/Hide Dev Tools',
+            accelerator: 'F12',
+            click(item, focusedWindows) {
+                focusedWindows.toggleDevTools();
             }
+        }, {
+            role: 'reload',
+            accelerator: 'F5'
+        }
         ]
     })
 }
