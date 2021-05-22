@@ -155,6 +155,7 @@
         progressBarFull.style.width = 100 * progress + "%";
       }).then((unityInstance) => {
         loadingBar.style.display = "none";
+        ipcRenderer.send('getip');
         fullscreenButton.onclick = () => {
           unityInstance.SetFullscreen(1);
         };
