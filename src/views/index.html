@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="TemplateData/style.css">
   <link rel="stylesheet" href="TemplateData/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/keyboard.css">
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css">
   <style>
     .fa-10x {
       font-size: 10em;
@@ -177,7 +178,7 @@
       ipcRenderer.send('shutdown');
     });
     ipcRenderer.on('wifi:ip', (e, obj) => {
-      ip.innerHTML = obj;
+      ip.innerHTML = '<span class="bi bi-wifi' + (obj == '127.0.0.1' ? '-off' : '') + '" />  ' + obj;
     });
     ipcRenderer.send('getip');
 
