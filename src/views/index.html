@@ -1,33 +1,21 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Eva</title>
-  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="shortcut icon" href="css/favicon.ico">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="TemplateData/style.css">
-  <link rel="stylesheet" href="TemplateData/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/keyboard.css">
   <link rel="stylesheet" href="css/bootstrap-icons.min.css">
-  <style>
-    .fa-10x {
-      font-size: 10em;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <div id="vieweyes">
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
+      <canvas id="eyes" onclick="fullscreen()"></canvas>
       <div id="unity-footer">
         <div id="ip" style="font-size: 55px;" class="btn btn-primary"></div>
         <div id="fullscreen" class="btn btn-primary f"><span class="fa fa-expand fa-5x"></span></div>
@@ -40,8 +28,16 @@
       <div id="back" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-10x"></span></div>
       <div id="power" class="btn btn-primary menu"><span class="fa fa-power-off fa-10x"></span></div>
       <div id="reboot" class="btn btn-primary menu"><span center class="fa fa-refresh fa-10x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyeselect')"><span class="fa fa-eye fa-10x"></span></div>
       <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-10x"></span></div>
       <div id="wifi" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-10x"></span></div>
+    </div>
+  </div>
+  <div id="vieweyeselect" style="display: none">
+    <div style="display: flex; align-items: center; justify-content: center; margin-top: 20%;">
+      <div id="back" class="btn btn-primary menu" onclick="changeview('vieweyeselect', 'viewmenu')"><span class="fa fa-mail-reply fa-10x"></span></div>
+      <div onclick="changeeyes('black')"><img src="img/eyes/black/blink/blink (10).png" alt=""></div>
+      <div onclick="changeeyes('white')"><img style="background-color: black;" src="img/eyes/white/blink/blink (10).png" alt=""></div>
     </div>
   </div>
   <div id="viewint" style="display: none;">
@@ -121,51 +117,9 @@
   </div>
   
   <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
+  <script src="js/eyes.js"></script>
   <script>
-    var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/Ojos.loader.js";
-    var config = {
-      dataUrl: buildUrl + "/Ojos.data",
-      frameworkUrl: buildUrl + "/Ojos.framework.js",
-      codeUrl: buildUrl + "/Ojos.wasm",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "amitjans",
-      productName: "Eyes2",
-      productVersion: "0.1",
-    };
-
-    var container = document.querySelector("#unity-container");
-    var canvas = document.querySelector("#unity-canvas");
-    var loadingBar = document.querySelector("#unity-loading-bar");
-    var progressBarFull = document.querySelector("#unity-progress-bar-full");
-    var fullscreenButton = document.querySelector("#fullscreen");
-
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      container.className = "unity-mobile";
-      config.devicePixelRatio = 1;
-    } else {
-      canvas.style.width = "1280px";
-      canvas.style.height = "720px";
-    }
-    loadingBar.style.display = "block";
-
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      createUnityInstance(canvas, config, (progress) => {
-        progressBarFull.style.width = 100 * progress + "%";
-      }).then((unityInstance) => {
-        loadingBar.style.display = "none";
-        ipcRenderer.send('getip');
-        fullscreenButton.onclick = () => {
-          unityInstance.SetFullscreen(1);
-        };
-      }).catch((message) => {
-        alert(message);
-      });
-    };
-    document.body.appendChild(script);
-
     // Edited
     const { ipcRenderer } = require('electron');
     var reboot = document.querySelector("#reboot");
@@ -179,6 +133,11 @@
     });
     ipcRenderer.on('wifi:ip', (e, obj) => {
       ip.innerHTML = '<span class="bi bi-wifi' + (obj == '127.0.0.1' ? '-off' : '') + '" />  ' + obj;
+      if (obj == '127.0.0.1') {
+        setTimeout(function () {
+          ipcRenderer.send('getip');
+        }, 5000);
+      }
     });
     ipcRenderer.send('getip');
 
