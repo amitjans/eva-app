@@ -10,16 +10,19 @@ var i = 1;
 var emotion = 'ini';
 var emotiondir = 'img/eyes/black';
 var fs_status = false;
+var frames = { blink: 10, wink: 10, joy: 16, sad: 16, anger: 16, surprise: 16 };
 var fullscreenButton = document.querySelector("#fullscreen");
 
-socket.on('messages', async function (data) {
-    if (data.anim == 'blink' || data.anim == 'wink') {
-        emotion = data.anim;
-        animx2(data.anim, -10);
-    } else if (emotion != 'ini' && data.anim != 'ini') {
-        animx2(data.anim);
+socket.on('messages', async function ({ anim }) {
+    console.log(anim);
+    if (anim == 'blink' || anim == 'wink') {
+        emotion = anim;
+        playanimx2(anim, frames[anim] * -1);
+    } else if (emotion != 'ini' && anim != 'ini') {
+        playanimx2(anim, frames[emotion] * -1);
+    } else if (emotion == 'ini' && anim == 'ini') {
     } else {
-        anim(data.anim);
+        playanim(anim, frames[anim]);
     }
 })
 
@@ -34,31 +37,30 @@ function putImage(url) {
 
 putImage(`${emotiondir}/joy/joy (1).png`);
 
-function anim(animation) {
+function playanim(animation, value) {
     let dir = (animation != 'ini');
     emotion = dir ? animation : emotion;
     var anim = setInterval(() => {
         putImage(`${emotiondir}/${emotion}/${emotion + ' (' + i + ')'}.png`);
         i = dir ? i + 1 : i - 1;
-        if (i == 17 || i == 0) {
-            i = dir ? 16 : 1;
+        if (i > value || i == 0) {
+            i = dir ? value : 1;
             emotion = animation;
             clearInterval(anim);
         }
     }, 42);
 }
 
-function animx2(animation, value = -16) {
-    i = value;
+function playanimx2(animation, value) {
     var anim = setInterval(() => {
-        putImage(`${emotiondir}/${emotion}/${emotion + ' (' + Math.abs(i) + ')'}.png`);
-        i++;
-        if (i == 0) {
-            i++;
+        putImage(`${emotiondir}/${emotion}/${emotion + ' (' + Math.abs(value) + ')'}.png`);
+        value++;
+        if (value == 0) {
+            value++;
             emotion = animation;
         }
-        if (i == (Math.abs(value) + 1)) {
-            i = (animation == 'blink' || animation == 'wink') ? 1 : i;
+        if (value > frames[animation]) {
+            i = (animation == 'blink' || animation == 'wink') ? 1 : frames[animation];
             emotion = (animation == 'blink' || animation == 'wink') ? 'ini' : emotion;
             clearInterval(anim);
         }
@@ -84,10 +86,17 @@ function changeeyes(value){
       case 'black':
         emotiondir = 'img/eyes/black';
         canvas.style.backgroundColor = 'white';
+        frames = { blink: 10, wink: 10, joy: 16, sad: 16, anger: 16, surprise: 16 };
         break;
     case 'white':
         emotiondir = 'img/eyes/white';
         canvas.style.backgroundColor = 'black';
+        frames = { blink: 10, wink: 10, joy: 16, sad: 16, anger: 16, surprise: 16 };
+        break;
+    case 'dots':
+        emotiondir = 'img/eyes/dots';
+        canvas.style.backgroundColor = 'black';
+        frames = { blink: 14, wink: 14, joy: 19, sad: 20, anger: 17, surprise: 20 };
         break;
       default:
         break;

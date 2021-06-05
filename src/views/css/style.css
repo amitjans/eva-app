@@ -13,3 +13,5 @@ body { padding: 0; margin: 0 }
 .wifi { font-size: 40px !important; word-wrap: break-word !important; }
 .input-font { font-size: 40px !important; }
 .fa-10x { font-size: 10em; }
+.eyes { margin: 30px; }
+.eyes img { width: 325px; border: 1px solid #007bff; }
