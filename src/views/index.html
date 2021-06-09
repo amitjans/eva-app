@@ -18,19 +18,18 @@
       <canvas id="eyes" onclick="fullscreen()"></canvas>
       <div id="unity-footer">
         <div id="ip" style="font-size: 55px;" class="btn btn-primary"></div>
-        <div id="fullscreen" class="btn btn-primary f"><span class="fa fa-expand fa-5x"></span></div>
         <div id="menu" class="btn btn-primary f" onclick="changeview('vieweyes', 'viewmenu')"><span class="fa fa-cog fa-5x"></span></div>
       </div>
     </div>
   </div>
   <div id="viewmenu" style="display: none;">
     <div style="display: flex; align-items: center; justify-content: center; margin-top: 20%;">
-      <div id="back" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-10x"></span></div>
-      <div id="power" class="btn btn-primary menu"><span class="fa fa-power-off fa-10x"></span></div>
-      <div id="reboot" class="btn btn-primary menu"><span center class="fa fa-refresh fa-10x"></span></div>
-      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyeselect')"><span class="fa fa-eye fa-10x"></span></div>
-      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-10x"></span></div>
-      <div id="wifi" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-10x"></span></div>
+      <div id="back" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-15x"></span></div>
+      <div id="power" class="btn btn-primary menu"><span class="fa fa-power-off fa-15x"></span></div>
+      <div id="reboot" class="btn btn-primary menu"><span center class="fa fa-refresh fa-15x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyeselect')"><span class="fa fa-eye fa-15x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-15x"></span></div>
+      <div id="wifi" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-15x"></span></div>
     </div>
   </div>
   <div id="vieweyeselect" style="display: none">
@@ -43,77 +42,83 @@
   </div>
   <div id="viewint" style="display: none;">
     <br/><br/>
-    <div id="list" class="row col-md-12">
-    </div>
     <div class="row col-md-12">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <span class="btn btn-lg btn-primary btn-block int" onclick="changeview('viewint', 'viewmenu')"><i class="fa fa-mail-reply"></i></span>
       </div>
+      <br />
+    </div>
+    <div id="list" class="row col-md-12">
     </div>
     <br>
   </div>
   <div id="viewwifi" style="display: none;">
-    <div class="container">
+    <br/><br/>
+    <div class="row col-md-12">
+      <div class="col-md-12">
+        <span class="btn btn-lg btn-primary btn-block int" onclick="changeview('viewwifi', 'viewmenu')"><i class="fa fa-mail-reply"></i></span>
+      </div>
+      <br />
+    </div>
       <div class="row col-md-12">
-        <div class="col-md-7" style="height: 450px; overflow-y: scroll;">
-          <div class="content p-4">
-          </div>
-        </div>
-        <div class="col-md-5">
-          <form class="p-4">
-            <div class="form-group">
-              <input type="text" class="form-control input-font" id="name" placeholder="SSID" autofocus>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control input-font" id="pass" placeholder="**********">
-            </div>
-            <button class="btn btn-primary btn-block"><i class="fa fa-plug fa-3x"></i></button>
-            <div class="btn btn-primary btn-block" onclick="changeview('viewwifi', 'viewmenu')"><i class="fa fa-mail-reply fa-3x"></i></div>
-          </form>
-        </div>
+        <div class="col-md-12" id="wifilist"></div>
       </div>
       <br>
-    </div>
-    <div style="margin-left: 10%; margin-right: 10%;">
-      <div class="row" style="font-size: 40px">
-        <ul id="keyboard">
-          <li class="symbol"><span class="off">`</span><span class="on">~</span></li>
-          <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
-          <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
-          <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
-          <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
-          <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
-          <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
-          <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
-          <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
-          <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
-          <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
-          <li class="symbol"><span class="off">-</span><span class="on">_</span></li>
-          <li class="symbol"><span class="off">=</span><span class="on">+</span></li>
-          <li class="delete lastitem">&larr;</li><li class="tab">&#8633;</li>
-          <li class="letter">q</li><li class="letter">w</li><li class="letter">e</li>
-          <li class="letter">r</li><li class="letter">t</li><li class="letter">y</li>
-          <li class="letter">u</li><li class="letter">i</li><li class="letter">o</li>
-          <li class="letter">p</li>
-          <li class="symbol"><span class="off">[</span><span class="on">{</span></li>
-          <li class="symbol"><span class="off">]</span><span class="on">}</span></li>
-          <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
-          <li class="capslock">caps lock</li><li class="letter">a</li><li class="letter">s</li>
-          <li class="letter">d</li><li class="letter">f</li><li class="letter">g</li>
-          <li class="letter">h</li><li class="letter">j</li><li class="letter">k</li>
-          <li class="letter">l</li>
-          <li class="symbol"><span class="off">;</span><span class="on">:</span></li>
-          <li class="symbol"><span class="off">'</span><span class="on">&quot;</span></li>
-          <li class="return lastitem">&crarr;</li><li class="left-shift">shift</li>
-          <li class="letter">z</li><li class="letter">x</li><li class="letter">c</li>
-          <li class="letter">v</li><li class="letter">b</li><li class="letter">n</li>
-          <li class="letter">m</li>
-          <li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li>
-          <li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li>
-          <li class="symbol"><span class="off">/</span><span class="on">?</span></li>
-          <li class="right-shift lastitem">shift</li><li class="space lastitem">&nbsp;</li>
-        </ul>
+  </div>
+  <div id="viewwifi2" style="display: none;">
+    <br />
+    <br />
+    <div class="row col-md-12">
+      <div class="col-md-12">
+          <div class="form-group">
+            <input type="text" class="form-control input-font" id="name" placeholder="SSID" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control input-font" id="pass" placeholder="**********">
+          </div>
+          <button class="btn btn-primary btn-block"><i class="fa fa-plug fa-3x"></i></button>
+          <div class="btn btn-primary btn-block" onclick="changeview('viewwifi2', 'viewmenu')"><i class="fa fa-mail-reply fa-3x"></i></div>
       </div>
+    </div>
+    <br>
+    <div class="row col-md-12">
+      <ul id="keyboard">
+        <li class="symbol"><span class="off">`</span><span class="on">~</span></li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+        <li class="symbol"><span class="off">-</span><span class="on">_</span></li>
+        <li class="symbol"><span class="off">=</span><span class="on">+</span></li>
+        <li class="delete lastitem">&larr;</li><li class="tab">&#8633;</li>
+        <li class="letter">q</li><li class="letter">w</li><li class="letter">e</li>
+        <li class="letter">r</li><li class="letter">t</li><li class="letter">y</li>
+        <li class="letter">u</li><li class="letter">i</li><li class="letter">o</li>
+        <li class="letter">p</li>
+        <li class="symbol"><span class="off">[</span><span class="on">{</span></li>
+        <li class="symbol"><span class="off">]</span><span class="on">}</span></li>
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+        <li class="capslock">caps lock</li><li class="letter">a</li><li class="letter">s</li>
+        <li class="letter">d</li><li class="letter">f</li><li class="letter">g</li>
+        <li class="letter">h</li><li class="letter">j</li><li class="letter">k</li>
+        <li class="letter">l</li>
+        <li class="symbol"><span class="off">;</span><span class="on">:</span></li>
+        <li class="symbol"><span class="off">'</span><span class="on">&quot;</span></li>
+        <li class="return lastitem">&crarr;</li><li class="left-shift">shift</li>
+        <li class="letter">z</li><li class="letter">x</li><li class="letter">c</li>
+        <li class="letter">v</li><li class="letter">b</li><li class="letter">n</li>
+        <li class="letter">m</li>
+        <li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li>
+        <li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li>
+        <li class="symbol"><span class="off">/</span><span class="on">?</span></li>
+        <li class="right-shift lastitem">shift</li><li class="space lastitem">&#8213;&#8213;&#8213;</li>
+      </ul>
     </div>
   </div>
   
@@ -121,7 +126,6 @@
   <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
   <script src="js/eyes.js"></script>
   <script>
-    // Edited
     const { ipcRenderer } = require('electron');
     var reboot = document.querySelector("#reboot");
     var power = document.querySelector("#power");

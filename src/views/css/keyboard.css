@@ -4,10 +4,12 @@
 #keyboard li {
 	float: left;
 	margin: 0 5px 5px 0;
-	width: 105px;
-	height: 105px;
-	line-height: 40px;
+	width: 125px;
+	height: 125px;
+	line-height: 60px;
 	text-align: center;
+	font-size: 60px;
+	vertical-align: text-bottom;
 	background: #fff;
 	border: 1px solid #007bff;
 	-moz-border-radius: 5px;
@@ -17,19 +19,19 @@
 	clear: left;
 }
 #keyboard .tab, #keyboard .delete {
-	width: 105px;
+	width: 125px;
 }
 #keyboard .capslock {
-	width: 163px;
+	width: 203px;
 }
 #keyboard .return {
-	width: 159px;
+	width: 179px;
 }
 #keyboard .left-shift {
-	width: 207px;
+	width: 257px;
 }
 #keyboard .right-shift {
-	width: 228px;
+	width: 257px;
 }
 .lastitem {
 	margin-right: 0;
@@ -39,7 +41,7 @@
 }
 #keyboard .space {
 	clear: left;
-	width: 1540px;
+	width: 1820px;
 }
 .on {
 	display: none;

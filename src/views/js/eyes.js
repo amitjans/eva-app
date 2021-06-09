@@ -26,6 +26,8 @@ socket.on('messages', async function ({ anim }) {
     }
 })
 
+socket.emit('code', 'asd');
+
 function putImage(url) {
     let base_image = new Image();
     base_image.src = url;
@@ -67,10 +69,15 @@ function playanimx2(animation, value) {
     }, 42);
 }
 
-fullscreenButton.addEventListener('click', function () {
-    canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-    fs_status = true;
-});
+function blink() {
+    setInterval(() => {
+        if (emotion == 'ini') {
+            emotion = 'blink';
+            playanimx2('blink', frames['blink'] * -1);
+        }
+    }, 10000);
+}
+blink();
 
 function fullscreen() {
     if (fs_status) {
