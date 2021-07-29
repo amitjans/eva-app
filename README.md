@@ -2,6 +2,27 @@
 App to show Eva's eyes and control the actions of it from the touch screen.
 Aplicación para controlar el robot social Eva desde la pantalla táctil.
 
+## Wifi
+To get the app wifi manager to work, install the ```network manager``` with the following command
+
+```
+sudo apt install network-manager network-manager-gnome
+```
+Also you probably need to remove the following packages
+
+```
+sudo apt purge openresolv dhcpcd5
+```
+
+If you need to connect to the wifi nework througth cli use the commands below.
+
+```
+nmcli d wifi list
+```
+```
+nmcli -a d wifi connect <SSID>
+```
+
 ## Production configuration
 The following steps allow the automatic startup of the Eva-app software every time you turn it on.
 
