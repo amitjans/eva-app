@@ -17,23 +17,37 @@
     <div id="unity-container" class="unity-desktop">
       <canvas id="eyes" onclick="fullscreen()"></canvas>
       <div id="unity-footer">
-        <div id="ip" style="font-size: 55px;" class="btn btn-primary"></div>
+        <div id="ip" class="btn btn-primary localip"></div>
         <div id="menu" class="btn btn-primary f" onclick="changeview('vieweyes', 'viewmenu')"><span class="fa fa-cog fa-5x"></span></div>
       </div>
     </div>
   </div>
   <div id="viewmenu" style="display: none;">
-    <div style="display: flex; align-items: center; justify-content: center; margin-top: 20%;">
-      <div id="back" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-15x"></span></div>
-      <div id="power" class="btn btn-primary menu"><span class="fa fa-power-off fa-15x"></span></div>
-      <div id="reboot" class="btn btn-primary menu"><span center class="fa fa-refresh fa-15x"></span></div>
-      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'vieweyeselect')"><span class="fa fa-eye fa-15x"></span></div>
-      <div id="intwindow" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-15x"></span></div>
-      <div id="wifi" class="btn btn-primary menu" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-15x"></span></div>
+    <div class="menu-style col-md-12">
+      <div id="back" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-15x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'vieweyeselect')"><span class="fa fa-eye fa-15x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-15x"></span></div>
+    </div>
+    <div class="menu-style col-md-12">
+      <div id="pc" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'viewmenutwo')"><span class="fa fa-desktop fa-15x"></span></div>
+      <div id="wifi" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-15x"></span></div>
+      <div class="col-md-4">&nbsp;</div>
+    </div>
+  </div>
+  <div id="viewmenutwo" style="display: none;">
+    <div class="menu-style col-md-12">
+      <div id="back" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenutwo', 'viewmenu')"><span class="fa fa-mail-reply fa-15x"></span></div>
+      <div id="power" class="btn btn-primary menu col-md-4"><span class="fa fa-power-off fa-15x"></span></div>
+      <div id="reboot" class="btn btn-primary menu col-md-4"><span class="fa fa-refresh fa-15x"></span></div>
+    </div>
+    <div class="menu-style col-md-12">
+      <div id="quit" class="btn btn-primary menu col-md-4"><span class="fa fa-times fa-15x"></span></div>
+      <div class="col-md-4">&nbsp;</div>
+      <div class="col-md-4">&nbsp;</div>
     </div>
   </div>
   <div id="vieweyeselect" style="display: none">
-    <div style="display: flex; align-items: center; justify-content: center; margin-top: 20%;">
+    <div class="menu-style">
       <div id="back" class="btn btn-primary menu" onclick="changeview('vieweyeselect', 'viewmenu')"><span class="fa fa-mail-reply fa-10x"></span></div>
       <div class="eyes" onclick="changeeyes('black')"><img src="img/eyes/black/blink/blink (10).png" alt=""></div>
       <div class="eyes" onclick="changeeyes('white')"><img style="background-color: black;" src="img/eyes/white/blink/blink (10).png" alt=""></div>
@@ -125,18 +139,22 @@
   </div>
   
   <script src="js/jquery-1.9.1.min.js"></script>
-  <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
+  <script src="js/socket.io.js"></script>
   <script src="js/eyes.js"></script>
   <script>
     const { ipcRenderer } = require('electron');
     var reboot = document.querySelector("#reboot");
     var power = document.querySelector("#power");
+    var quit = document.querySelector("#quit");
     var ip = document.querySelector('#ip');
     reboot.addEventListener('click', () => {
       ipcRenderer.send('restart');
     });
     power.addEventListener('click', () => {
       ipcRenderer.send('shutdown');
+    });
+    quit.addEventListener('click', () => {
+      ipcRenderer.send('quit');
     });
     ipcRenderer.on('wifi:ip', (e, obj) => {
       ip.innerHTML = '<span class="bi bi-wifi' + (obj == '127.0.0.1' ? '-off' : '') + '" />  ' + obj;

@@ -72,6 +72,10 @@ ipcMain.on('restart', (e, obj) => {
     });
 })
 
+ipcMain.on('quit', (e, obj) => {
+    app.quit();
+})
+
 ipcMain.on('getip', (e, obj) => {
     mainWindow.webContents.send('wifi:ip', ip.address());
 })
