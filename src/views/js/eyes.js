@@ -2,8 +2,8 @@ var socket = io.connect('http://127.0.0.1:3000', { forceNew: true });
 var canvas = document.querySelector("#eyes");
 canvas.style.backgroundColor = 'white';
 var context = canvas.getContext('2d');
-canvas.width = window.screen.width * 0.6667;
-canvas.height = window.screen.height * 0.6667;
+canvas.width = window.screen.width * 0.95;
+canvas.height = window.screen.height * 0.95;//* 0.6667;
 context.width = canvas.width;
 context.height = canvas.height;
 var i = 1;
@@ -11,7 +11,6 @@ var emotion = 'ini';
 var emotiondir = 'img/eyes/black';
 var fs_status = false;
 var frames = { blink: 10, wink: 10, joy: 16, sad: 16, anger: 16, surprise: 16 };
-var fullscreenButton = document.querySelector("#fullscreen");
 
 socket.on('messages', async function ({ anim }) {
     console.log(anim);
@@ -79,15 +78,6 @@ function blink() {
 }
 blink();
 
-function fullscreen() {
-    if (fs_status) {
-        document.webkitCancelFullScreen();
-    } else {
-        canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-    }
-    fs_status = !fs_status;
-}
-
 function changeeyes(value){
     switch (value) {
       case 'black':
@@ -109,5 +99,5 @@ function changeeyes(value){
         break;
     }
     putImage(`${emotiondir}/joy/joy (1).png`);
-    changeview('vieweyeselect', 'vieweyes');
+    changeview('vieweyes');
   }

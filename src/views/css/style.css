@@ -1,13 +1,11 @@
 body { padding: 0; margin: 0 }
 #unity-container { position: absolute }
 #unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
-#unity-container.unity-mobile { width: 100%; height: 100% }
 #unity-canvas { background: #ffffff }
 .unity-mobile #unity-canvas { width: 100%; height: 100% }
-#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
 #unity-footer { position: relative }
 .unity-mobile #unity-footer { display: none }
-.menu-style { display: flex; align-items: center; justify-content: center; margin-top: 10%; }
+.menu-style { display: flex; align-items: center; justify-content: center; margin-top: 8%; }
 
 @media screen and (min-width: 1000px) {
     .f { float: right; margin: 5px; }
@@ -20,6 +18,7 @@ body { padding: 0; margin: 0 }
     .eyes { margin: 30px; }
     .eyes img { width: 325px; border: 1px solid #007bff; }
     .localip { font-size: 55px !important; }
+    .viewmenu { display: none; padding: 0em 5em 0em 5em; }
 }
 
 @media screen and (max-width: 500px) {

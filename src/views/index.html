@@ -15,40 +15,37 @@
 <body>
   <div id="vieweyes">
     <div id="unity-container" class="unity-desktop">
-      <canvas id="eyes" onclick="fullscreen()"></canvas>
-      <div id="unity-footer">
-        <div id="ip" class="btn btn-primary localip"></div>
-        <div id="menu" class="btn btn-primary f" onclick="changeview('vieweyes', 'viewmenu')"><span class="fa fa-cog fa-5x"></span></div>
-      </div>
+      <canvas id="eyes" onclick="changeview('viewmenu')"></canvas>
     </div>
   </div>
-  <div id="viewmenu" style="display: none;">
+  <div id="viewmenu" class="viewmenu">
     <div class="menu-style col-md-12">
-      <div id="back" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'vieweyes')"><span class="fa fa-mail-reply fa-15x"></span></div>
-      <div id="intwindow" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'vieweyeselect')"><span class="fa fa-eye fa-15x"></span></div>
-      <div id="intwindow" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'viewint')"><span class="fa fa-comments-o fa-15x"></span></div>
+      <div id="back" class="btn btn-primary menu col-md-4" onclick="changeview('vieweyes')"><span class="fa fa-mail-reply fa-15x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu col-md-4" onclick="changeview('vieweyeselect')"><span class="fa fa-eye fa-15x"></span></div>
+      <div id="intwindow" class="btn btn-primary menu col-md-4" onclick="changeview('viewint')"><span class="fa fa-comments-o fa-15x"></span></div>
     </div>
     <div class="menu-style col-md-12">
-      <div id="pc" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'viewmenutwo')"><span class="fa fa-desktop fa-15x"></span></div>
-      <div id="wifi" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu', 'viewwifi')"><span class="fa fa-wifi fa-15x"></span></div>
-      <div class="col-md-4">&nbsp;</div>
+      <div id="pc" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenutwo')"><span class="fa fa-desktop fa-15x"></span></div>
+      <div id="quit" class="btn btn-primary menu col-md-4"><span class="fa fa-times fa-15x"></span></div>
+      <div id="quit" class="btn btn-disable menu col-md-4"><span class="fa fa-times fa-15x" style="color: white;"></span></div>
     </div>
   </div>
-  <div id="viewmenutwo" style="display: none;">
+  <div id="viewmenutwo" class="viewmenu">
     <div class="menu-style col-md-12">
-      <div id="back" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenutwo', 'viewmenu')"><span class="fa fa-mail-reply fa-15x"></span></div>
+      <div id="back" class="btn btn-primary menu col-md-4" onclick="changeview('viewmenu')"><span class="fa fa-mail-reply fa-15x"></span></div>
       <div id="power" class="btn btn-primary menu col-md-4"><span class="fa fa-power-off fa-15x"></span></div>
       <div id="reboot" class="btn btn-primary menu col-md-4"><span class="fa fa-refresh fa-15x"></span></div>
     </div>
     <div class="menu-style col-md-12">
-      <div id="quit" class="btn btn-primary menu col-md-4"><span class="fa fa-times fa-15x"></span></div>
-      <div class="col-md-4">&nbsp;</div>
-      <div class="col-md-4">&nbsp;</div>
+      <div id="wifi" class="btn btn-primary menu col-md-12" onclick="changeview('viewwifi')">
+        <span class="fa fa-wifi fa-15x"></span>
+        <span id="ip" class="fa-10x"></span>
+      </div>
     </div>
   </div>
   <div id="vieweyeselect" style="display: none">
     <div class="menu-style">
-      <div id="back" class="btn btn-primary menu" onclick="changeview('vieweyeselect', 'viewmenu')"><span class="fa fa-mail-reply fa-10x"></span></div>
+      <div id="back" class="btn btn-primary menu" onclick="changeview('viewmenu')"><span class="fa fa-mail-reply fa-10x"></span></div>
       <div class="eyes" onclick="changeeyes('black')"><img src="img/eyes/black/blink/blink (10).png" alt=""></div>
       <div class="eyes" onclick="changeeyes('white')"><img style="background-color: black;" src="img/eyes/white/blink/blink (10).png" alt=""></div>
       <div class="eyes" onclick="changeeyes('dots')"><img style="background-color: black;" src="img/eyes/dots/blink/blink (10).png" alt=""></div>
@@ -58,7 +55,7 @@
     <br/><br/>
     <div class="row col-md-12">
       <div class="col-md-12">
-        <span class="btn btn-lg btn-primary btn-block int" onclick="changeview('viewint', 'viewmenu')"><i class="fa fa-mail-reply"></i></span>
+        <span class="btn btn-lg btn-primary btn-block int" onclick="changeview('viewmenu')"><i class="fa fa-mail-reply"></i></span>
       </div>
       <br />
     </div>
@@ -70,7 +67,7 @@
     <br/><br/>
     <div class="row col-md-12">
       <div class="col-md-12">
-        <span class="btn btn-lg btn-primary btn-block int" onclick="changeview('viewwifi', 'viewmenu')"><i class="fa fa-mail-reply"></i></span>
+        <span class="btn btn-lg btn-primary btn-block int" onclick="changeview('viewmenu')"><i class="fa fa-mail-reply"></i></span>
       </div>
       <br />
     </div>
@@ -92,7 +89,7 @@
             <input type="text" class="form-control input-font" id="pass" placeholder="**********">
           </div>
           <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plug fa-3x"></i></button>
-          <div class="btn btn-primary btn-block" onclick="changeview('viewwifi2', 'viewmenu')"><i class="fa fa-mail-reply fa-3x"></i></div>
+          <div class="btn btn-primary btn-block" onclick="changeview('viewmenu')"><i class="fa fa-mail-reply fa-3x"></i></div>
         </form>
       </div>
     </div>
@@ -137,6 +134,9 @@
       </ul>
     </div>
   </div>
+  <div id="imgremote" style="display: none" onclick="changeview('vieweyes')">
+    <img src="http://127.0.0.1:3000/images/saludo.png" alt="" width="">
+  </div>
   
   <script src="js/jquery-1.9.1.min.js"></script>
   <script src="js/socket.io.js"></script>
@@ -157,7 +157,7 @@
       ipcRenderer.send('quit');
     });
     ipcRenderer.on('wifi:ip', (e, obj) => {
-      ip.innerHTML = '<span class="bi bi-wifi' + (obj == '127.0.0.1' ? '-off' : '') + '" />  ' + obj;
+      ip.innerHTML = obj;
       if (obj == '127.0.0.1') {
         setTimeout(function () {
           ipcRenderer.send('getip');
@@ -166,14 +166,18 @@
     });
     ipcRenderer.send('getip');
 
-    function changeview(id1, id2) {
-      document.getElementById(id1).style.display = 'none';
-      document.getElementById(id2).style.display = 'block';
+    function changeview(id) {
+      let ids = ["vieweyes", "viewmenu", "viewmenutwo", "vieweyeselect", "viewint", "viewwifi", "viewwifi2", "imgremote"];
+      for(let item of ids){
+        document.getElementById(item).style.display = 'none';
+      }
+      document.getElementById(id).style.display = 'block';
     }
   </script>
   <script src="js/keyboard.min.js"></script>
   <script src="js/wifi.min.js"></script>
   <script src="js/interactions.min.js"></script>
+  <script src="js/img.js"></script>
 </body>
 
 </html>
